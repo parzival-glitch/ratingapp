@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Overpass:wght@400;700&display=swap" rel="stylesheet">
+  <title>Rating Component</title>
+  <style>
+  	* {
+  		box-sizing: border-box;
+  		margin: 0;
+  		padding: 0;
+  		font-family: 'Overpass', sans-serif;
+  	}
+  	body {
+  		background-color: hsl(216, 12%, 8%);
+  	}
+    .attribution { font-size: 11px; text-align: center; letter-spacing: 1px; font-family: 'Overpass', sans-serif; color: hsl(216, 12%, 54%) }
+    .attribution a { color: hsl(228, 45%, 44%); letter-spacing: 1px; font-family: 'Overpass', sans-serif;}
+    .main {
+    	width: 350px;
+    	height: 350px;
+    	background-color: hsl(213, 19%, 18%);
+    	margin: 0 auto;
+    	margin-top: 150px;
+    	border-radius: 30px;
+    	padding: 30px;
+    	margin-bottom: 10px;
+    }
+    .star {
+    	width: 35px;
+    	height: 35px;
+    	background-color: #363f4c;
+    	border-radius: 50%;
+    	margin-bottom: 30px;
+    }
+    h2 {
+    	color: hsl(0, 0%, 100%);
+    	font-weight: 700;
+    	font-size: 30px;
+    	margin-bottom: 10px;
+    }
+    p {
+    	font-size: 14px;
+    	color: hsl(216, 12%, 54%);
+    	margin-bottom: 20px;
+    }
+    .ratings {
+    	width: 100%;
+    	height: 50px;
+    	background-color: transparent;
+    	display: flex;
+    	justify-content: space-between;
+    	padding-top: 43x;
+    	margin-bottom: 20px;
+    }
+    .circle {
+    	width: 40px;
+    	height: 40px;
+    	background-color: #363f4c;
+    	color: hsl(216, 12%, 54%);
+    	border-radius: 50%;
+    	display: flex;
+    	justify-content: center;
+    	padding-top: 12px;
+    	cursor: pointer;
+    }
+    .circle:hover {
+    	background-color: hsl(25, 97%, 53%);
+    	color: white;
+    	transition: 0.3s;
+    }
+    button {
+    	width: 100%;
+    	border: none;
+    	background-color: hsl(25, 97%, 53%);
+    	color: white;
+    	padding-top: 10px;
+    	padding-bottom: 10px;
+    	border-radius: 30px;
+    	font-family: 'Overpass', sans-serif;
+    	letter-spacing: 1px;
+    }
+    button:hover {
+    	background-color: white;
+    	color: hsl(25, 97%, 53%);
+    	cursor: pointer;
+    	transition: 0.5s;
+    }
+    .main2 {
+    	width: 350px;
+    	height: 350px;
+    	background-color: hsl(213, 19%, 18%);
+    	margin: 0 auto;
+    	margin-top: 150px;
+    	border-radius: 30px;
+    	padding: 30px;
+    	margin-bottom: 10px;
+    	display: none;
+    }
+    .selection {
+    	background-color: white;
+    	text-align: center;
+    	padding-top: 5px;
+    	width: 60%;
+    	margin: 0 auto;
+    	border-radius: 30px;
+    	background-color: #363f4c;
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    .circle:focus {
+    	background-color: hsl(217, 12%, 63%);
+    	color: white;
+    }
+    @media (max-width: 520px) {
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Rating state start -->
+
+  <div class="main" id="main">
+
+  	<div class="star">
+  		<img src="images/icon-star.svg" style="margin-left: 9px; margin-top: 9px">
+  	</div>
+  	<h2>How did we do?</h2>
+  	<p>Please let us know how we did with your support request. All feedback is appreciated 
+    to help us improve our offering!</p>
+    <div class="ratings">
+
+    	<button class="circle" value="1">1</button>
+    	<button class="circle" value="2">2</button>
+    	<button class="circle" value="3">3</button>
+    	<button class="circle" value="4">4</button>
+    	<button class="circle" value="5">5</button>
+    	
+    </div>
+
+    <button onclick="displayThankYouPage()">SUBMIT</button>
+  	
+  </div>
+  <!-- Rating state end -->
+
+  <!-- Thank you state start -->
+  <div class="main2" id="main2">
+
+  	<img src="images/illustration-thank-you.svg" style="margin-left: 55px; margin-bottom: 30px;">
+  	<div class="selection">
+  		<p style="font-size: 16px; color: hsl(25, 97%, 53%)">You selected <span id="yrh"></span> out of 5</p>  	
+  	</div>
+  	<h2 style="text-align: center;">Thank you!</h2>
+  	<p style="text-align: center;">We appreciate you taking the time to give a rating. If you ever need more support, 
+    don’t hesitate to get in touch!</p>
+    	
+  </div>
+
+  <!-- Thank you state end -->
+
+  
+  <div class="attribution">
+    Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a><br> 
+    Coded by <a href="mailto: moradeyodavid243@gmail.com">Moradeyo David</a>
+  </div>
+
+
+  <script type="text/javascript">
+
+  	const main2 = document.getElementById('main2');
+  	const main = document.getElementById('main');
+
+  	const buttons = document.querySelectorAll('.circle');
+  	const userChoice = document.getElementById('yrh');
+
+  	//Add click event listener to each button
+  	buttons.forEach(function(button) {
+  		button.addEventListener('click', function() {
+  			let value = this.value;
+  			userChoice.innerText = value;
+  		})
+  	}) 
+
+  	function displayThankYouPage() {
+  		main2.style.display = "block";
+  		main.style.display = "none";
+  	}
+
+  </script>
+</body>
+</html>
